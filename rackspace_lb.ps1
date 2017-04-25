@@ -25,7 +25,7 @@ $lbURI="https://ord.loadbalancers.api.rackspacecloud.com/v1.0/$account/loadbalan
 $noderequest=@{"node"= @{
 "condition"= $($condition)}} | Convertto-Json
 $noderequest
-$servers=@{"PWUSSFCD01" = "10.211.64.206"; "PWUSSFCD02" = "10.211.64.145"}
+$servers=@{""server1" = "IP"; "server2" = "IP"}
 $servername=$servers["$jenkinsserver"]
 #Main
 #Gets the token from Rackspace
