@@ -7,7 +7,7 @@ WORDS = []
 PHRASES = {
     "classes %%%(%%%):":
         "Make a class named %%% that is-a %%%. ",
-    "class %%%(object):\n\tdef __init__(self, ***)":
+    "class %%%(object):\n\tdef __init__(self, ***)" :
     "class %%% has-a __init__ that takes self and *** params.",
     "class %%%(object):\n\tdef ***(self, @@@)":
         "class %%% has-a function *** that takes self and @@@ params.",
@@ -27,15 +27,16 @@ for word in urlopen(WORD_URL).readlines():
 
 
 def convert(snippet, phrase):
-    class_names = [w.capitalize () for w in random.sample(WORDS, snippet.count("%%%"))]
+    class_names = [w.capitalize () for w in 
+    random.sample(WORDS, snippet.count("%%%"))]
     other_names = random.sample(WORDS, snippet.count("***"))
     results = []
     param_names = []
 
     for i in range(0, snippet.count("@@@")):
         param_count = random.randint(1,3)
-        param_names.append(','.join)
-        random.sample(WORDS, param_count)
+        param_names.append(','.join(
+        random.sample(WORDS, param_count)))
 
     for sentence in snippet, phrase:
         result = sentence[:]
@@ -52,7 +53,7 @@ def convert(snippet, phrase):
     
     results.append(result)
 
-    return results
+    return results, results
 
     #keep going until they hit CTRL-D
 try:
