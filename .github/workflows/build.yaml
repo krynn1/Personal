@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v1.0.0
         with:
           name: EZRepBundle
-          path: "./_build"                
+          path: "_build"                
       - name: Login to Azure
         uses: azure/login@v1
         with:
@@ -50,6 +50,6 @@ jobs:
         uses: Azure/webapps-deploy@v2
         with:
           app-name: jfordapp12345
-          package: "./_build"
+          package: "_build"
           slot-name: production   
         
