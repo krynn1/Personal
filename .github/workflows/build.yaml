@@ -28,7 +28,7 @@ jobs:
           working-directory: ./dotnet-6-minimal-api-master/
       strategy:
         matrix:
-          dotnet-version: '6.0.x' 
+          dotnet-version: ['6.0.x']
       steps:
       - uses: actions/checkout@v3
       - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
