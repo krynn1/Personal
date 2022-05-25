@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v1.0.0
         with:
           name: EZRepBundle
-          path: "./_build"                
+          path: "/dotnet-6-minimal-api-master/_build"                
       - name: Login to Azure
         uses: azure/login@v1
         with:
