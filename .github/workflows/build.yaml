@@ -21,7 +21,7 @@ jobs:
     #        azure-pipeline-name: 'krynn1.Personal'
     #        azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
     build:
-
+    name: Build
     runs-on: ubuntu-latest
     defaults:
       run:
