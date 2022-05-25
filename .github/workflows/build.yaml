@@ -54,4 +54,3 @@ jobs:
           app-name: jfordapp12345
           package: "./dotnet-6-minimal-api-master/_build/"
           slot-name: production   
-        
