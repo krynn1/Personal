@@ -39,17 +39,17 @@ jobs:
         run: dotnet build --configuration Release --no-restore --o _build
       - name: Upload artifact
         uses: actions/upload-artifact@v1.0.0
-          with:
-            name: EZRepBundle
-            path: "./_build"                
+        with:
+          name: EZRepBundle
+          path: "./_build"                
       - name: Login to Azure
         uses: azure/login@v1
-          with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Publish Artifacts to Azure
         uses: Azure/webapps-deploy@v2
-          with:
-            app-name: jfordapp12345
-            package: "./_build"
-            slot-name: production   
+        with:
+          app-name: jfordapp12345
+          package: "./_build"
+          slot-name: production   
         
