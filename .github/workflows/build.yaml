@@ -22,7 +22,7 @@ jobs:
     #        azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
     build:
       name: Build
-      runs-on: ubuntu-latest
+      runs-on: windows-latest
       defaults:
         run:
           working-directory: ./dotnet-6-minimal-api-master/
