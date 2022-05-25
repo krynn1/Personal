@@ -10,13 +10,34 @@ on:
       - master
 
 jobs:
+    #build:
+    #    name: Call Azure Pipeline
+    #    runs-on: ubuntu-latest
+    #    steps:
+    #    - name: Azure Pipelines Action
+    #      uses: Azure/pipelines@v1
+    #      with:
+    #        azure-devops-project-url: https://dev.azure.com/prairiesunflower/prairesunflower
+    #        azure-pipeline-name: 'krynn1.Personal'
+    #        azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
     build:
-        name: Call Azure Pipeline
-        runs-on: ubuntu-latest
-        steps:
-        - name: Azure Pipelines Action
-          uses: Azure/pipelines@v1
-          with:
-            azure-devops-project-url: https://dev.azure.com/prairiesunflower/prairesunflower
-            azure-pipeline-name: 'krynn1.Personal'
-            azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./dotnet-6-minimal-api-master/
+    strategy:
+      matrix:
+        dotnet-version: '6.0.x' 
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+        
