@@ -8,15 +8,48 @@ on:
   pull_request:
     branches: 
       - master
-
 jobs:
+    #build:
+    #    name: Call Azure Pipeline
+    #    runs-on: ubuntu-latest
+    #    steps:
+    #    - name: Azure Pipelines Action
+    #      uses: Azure/pipelines@v1
+    #      with:
+    #        azure-devops-project-url: https://dev.azure.com/prairiesunflower/prairesunflower
+    #        azure-pipeline-name: 'krynn1.Personal'
+    #        azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
     build:
-        name: Call Azure Pipeline
-        runs-on: ubuntu-latest
-        steps:
-        - name: Azure Pipelines Action
-          uses: Azure/pipelines@v1
-          with:
-            azure-devops-project-url: https://dev.azure.com/prairiesunflower/prairesunflower
-            azure-pipeline-name: 'krynn1.Personal'
-            azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
+      name: Build
+      runs-on: windows-latest
+      defaults:
+        run:
+          working-directory: ./dotnet-6-minimal-api-master/
+      strategy:
+        matrix:
+          dotnet-version: ['6.0.x']
+      steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Create Build Directory
+        run: mkdir _build
+      - name: Build
+        run: dotnet build --configuration Release --no-restore -o ./_build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: EZRepBundle
+          path: "./dotnet-6-minimal-api-master/_build/"                
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Publish Artifacts to Azure
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: jfordapp12345
+          package: "./dotnet-6-minimal-api-master/_build/"
+          slot-name: production   
