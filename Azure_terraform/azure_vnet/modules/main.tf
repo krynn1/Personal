@@ -14,10 +14,5 @@ provider "azurerm" {
   features {}
 }
 
-# Create a resource group
 
-
-module "name" {
-   source  = "./modules"
-   name = "jford1234"
-}
+gcloud dataproc clusters stop my-vpc-native-cluster --region us-central1

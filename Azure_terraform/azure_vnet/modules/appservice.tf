@@ -1,5 +1,5 @@
 resource "azurerm_service_plan" "plan" {
-  name                = "jfordapptestplan"
+  name                = var.name
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
   sku_name            = "S1"
@@ -49,4 +49,31 @@ resource "azurerm_network_security_group" "example" {
 resource "azurerm_subnet_network_security_group_association" "example" {
   subnet_id                 = azurerm_subnet.subnet.id
   network_security_group_id = azurerm_network_security_group.example.id
+}
+
+resource "azurerm_resource_group" "rg" {
+  name     = "jfordrg"
+  location = var.location
+}
+
+# Create a virtual network within the resource group
+resource "azurerm_virtual_network" "vnet" {
+  name                = "vnet"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  address_space       = ["10.0.0.0/16"]
+
+}
+resource "azurerm_private_endpoint" "example" {
+  name                = "jford-endpoint"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  subnet_id           = azurerm_subnet.app_private_endpoint_subnet.id
+
+  private_service_connection {
+    is_manual_connection           = false
+    name                           = "jford-connection"
+    private_connection_resource_id = azurerm_windows_web_app.app.id
+    subresource_names              = ["sites"]
+  }
 }
