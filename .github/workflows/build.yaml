@@ -19,6 +19,8 @@ jobs:
       - uses: Azure/login@v1
         with: # Set Azure credentials secret as an input
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: move directory
+      - uses: ./Data Resources
       - name: terraform install
         uses: hashicorp/setup-terraform@v2
       - name: terraform init
