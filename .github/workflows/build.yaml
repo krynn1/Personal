@@ -26,6 +26,12 @@ jobs:
         uses: hashicorp/setup-terraform@v2
       - name: terraform init
         run: terraform init
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }} 
+            #client-id: ${{ secrets.clientId }}
+            #tenant-id: ${{ secrets.tenantId }}
+            #subscription-id: ${{ secrets.subscriptionId }}
+            #client_secret: $${{ secrets.clientSecret }} 
         working-directory: Azure_terraform/Data resources
       - name: terraform plan -out:outfile.txt
         run: terraform plan -out:outfile.txt
