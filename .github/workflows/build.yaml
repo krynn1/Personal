@@ -17,8 +17,8 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - uses: Azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+        with: # Set Azure credentials secret as an input
+          credentials: ${{ secrets.AZURE_CREDENTIALS }}
       - name: terraform install
         uses: hashicorp/setup-terraform@v2
       - name: terraform init
