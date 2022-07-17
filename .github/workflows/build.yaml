@@ -5,11 +5,12 @@ on:
   push:
     branches:
       - master
-    paths:
-      - Azure_terraform/Data Resources
   pull_request:
     branches: 
       - masters
+defaults:
+  run:
+    working-directory: Data Resources
 jobs:
     build:
       name: Build
