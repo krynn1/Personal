@@ -19,7 +19,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
       - name: moving directories
-      - run: |
+        run: |
           cd Azure_terraform
           ls -lah
       - name: terraform install
