@@ -21,15 +21,15 @@ jobs:
       - name: moving directories
         run: |
           cd Azure_terraform
-          ls -lah
+          cd Data Resources
       - name: terraform install
         uses: hashicorp/setup-terraform@v2
       - name: terraform init
         run: terraform init
-        working-directory: .\Azure_terraform/Data resources
+        working-directory: Azure_terraform/Data resources
       - name: terraform plan -out:outfile.txt
         run: terraform plan -out:outfile.txt
-        working-directory: .\Azure_terraform/Data resources
+        working-directory: Azure_terraform/Data resources
       - name: terraform apply
         run: terraform apply "outfile.txt"
         working-directory: Azure_terraform/Data resources
