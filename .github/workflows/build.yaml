@@ -18,14 +18,18 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Check out repository
         uses: actions/checkout@v3
+      - name: moving directories
+      - run: |
+          cd Azure_terraform
+          ls -lah
       - name: terraform install
         uses: hashicorp/setup-terraform@v2
       - name: terraform init
         run: terraform init
-        working-directory: Azure_terraform/Data
+        working-directory: .\Azure_terraform/Data
       - name: terraform plan -out:outfile.txt
         run: terraform plan -out:outfile.txt
-        working-directory: Azure_terraform/Data
+        working-directory: .\Azure_terraform/Data
       - name: terraform apply
         run: terraform apply "outfile.txt"
         working-directory: Azure_terraform/Data
