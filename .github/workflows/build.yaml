@@ -18,6 +18,11 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Check out repository
         uses: actions/checkout@v3
+      - name: listing directory
+        run: |
+          ls -lah
+          cd Personal
+          ls -lah
       - name: terraform install
         uses: hashicorp/setup-terraform@v2
       - name: terraform init
