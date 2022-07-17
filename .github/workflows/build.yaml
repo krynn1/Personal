@@ -19,6 +19,7 @@ jobs:
       - uses: Azure/login@v1
         with:
           creds: ${{ secrets.prairie_key }}
+      - name: terraform install
         uses: hashicorp/setup-terraform@v2
       - name: terraform init
         run: terraform init
