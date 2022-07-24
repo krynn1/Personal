@@ -5,12 +5,12 @@ terraform {
       version = "3.13.0"
     }
   }
-   backend "azurerm" {
+   /*backend "azurerm" {
     resource_group_name  = "jford-test"
     storage_account_name = "tfstate12345632"
     container_name       = "tfstate"
     key = "data.tfstate"
-}
+}*/
 }
 
 provider "azurerm" {
