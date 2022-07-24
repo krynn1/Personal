@@ -29,6 +29,11 @@ jobs:
         working-directory: Azure_terraform/Data resources
       - name: terraform plan -out:outfile.txt
         run: terraform plan -out:outfile.txt
+        env:
+          ARM_CLIENT_ID: ${{secrets.CLIENT_ID}}
+          ARM_CLIENT_SECRET: ${{ secrets.SECRET}}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID}}
+          ARM_TENANT_ID: ${{ secrets.tenant_id}}
         working-directory: Azure_terraform/Data resources
       - name: terraform apply
         run: terraform apply "outfile.txt"
