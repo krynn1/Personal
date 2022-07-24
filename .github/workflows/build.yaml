@@ -49,7 +49,7 @@ jobs:
           ARM_TENANT_ID: ${{ secrets.tenant_id}}
         working-directory: Azure_terraform/Data resources
       - name: terraform destroy
-        run: terraform destroy -force
+        run: terraform destroy -auto-approve
         env:
           ARM_CLIENT_ID: ${{secrets.CLIENT_ID}}
           ARM_CLIENT_SECRET: ${{ secrets.SECRET}}
