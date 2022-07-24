@@ -10,8 +10,8 @@ terraform {
     storage_account_name = "tfstate12345632"
     container_name       = "tfstate"
     key = "data.tfstate"
-    subscription_id = var.ARM_SUBSCRIPTION_ID
-    tenant_id = var.ARM_TENANT_ID
+    subscription_id = "b756ec64-dce1-4cc9-8177-beabd296d707"
+    tenant_id = "62ab0a74-ae0c-4d65-b20e-24e6c99966a9"
 }
 }
 
