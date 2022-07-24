@@ -47,7 +47,7 @@ jobs:
           ARM_CLIENT_SECRET: ${{ secrets.SECRET}}
           ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID}}
           ARM_TENANT_ID: ${{ secrets.tenant_id}}
-        working-directory: Azure_terraform/Data
+        working-directory: Azure_terraform/Data resources
       - name: terraform destroy
         run: terraform destroy -force
         env:
