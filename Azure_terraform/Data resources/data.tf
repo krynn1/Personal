@@ -1,21 +1,21 @@
-data "azurerm_resource_group" "jford" {
+data "azurerm_resource_group" "rg" {
   name = "jford-test"
 }
 
+resource "azurerm_app_service_plan" "test" {
+  location = data.azurerm_resource_group.rg.location
+  name = "jfordtest1234566"
+  resource_group_name = data.azurerm_resource_group.rg.name
 
-resource "azurerm_service_plan" "example" {
-  name                = "appservice-plan"
-  resource_group_name = data.azurerm_resource_group.jford.name
-  location            = data.azurerm_resource_group.jford.location
-  sku_name            = "P1v2"
-  os_type             = "Windows"
+  sku {
+    tier = "Standard"
+    size = "S1"
+  }
 }
 
-resource "azurerm_windows_web_app" "example" {
-  name                = "app-service-1235435"
-  resource_group_name = data.azurerm_resource_group.jford.name
-  location            = azurerm_service_plan.example.location
-  service_plan_id     = azurerm_service_plan.example.id
-
-  site_config {}
+resource "azurerm_app_service" "jford-app-service" {
+  app_service_plan_id = azurerm_app_service_plan.test.id
+  location = data.azurerm_resource_group.rg.location
+  name = "jfordtest123556"
+  resource_group_name = data.azurerm_resource_group.rg.name
 }
