@@ -4,7 +4,7 @@ data "azurerm_resource_group" "rg" {
 
 resource "azurerm_app_service_plan" "test" {
   location = data.azurerm_resource_group.rg.location
-  name = "jfordtest1234566"
+  name = "jford${var.env}1234566"
   resource_group_name = data.azurerm_resource_group.rg.name
 
   sku {

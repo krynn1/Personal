@@ -4,7 +4,7 @@ resource "tfe_workspace" "test" {
   organization   = tfe_organization.test.name
   working_directory = "Azure_terraform/Data resources"
   vcs_repo {
-    identifier = ""
-    oauth_token_id = ""
+    identifier = "krynn1/Personal"
+    oauth_token_id = var.oauth
   }
 }
